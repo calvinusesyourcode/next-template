@@ -1,7 +1,6 @@
 import "@/styles/globals.css"
 import { Metadata } from "next"
 
-import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { SiteHeader } from "@/components/site-header"
@@ -10,10 +9,10 @@ import { ThemeProvider } from "@/components/theme-provider"
 
 export const metadata: Metadata = {
   title: {
-    default: siteConfig.name,
-    template: `%s - ${siteConfig.name}`,
+    default: "testing scroll snap",
+    template: `%s - testing scroll snap`,
   },
-  description: siteConfig.description,
+  description: "2am coding sesh hits diff",
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "black" },
     { media: "(prefers-color-scheme: dark)", color: "black" },
