@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: light)", color: "black" },
     { media: "(prefers-color-scheme: dark)", color: "black" },
   ],
   icons: {
@@ -32,17 +32,17 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <>
-      <html lang="en" suppressHydrationWarning>
+      <html lang="en" suppressHydrationWarning style={{ backgroundColor: 'black' }}>
         <head />
         <body
           className={cn(
-            "min-h-screen bg-background font-sans antialiased",
+            "min-h-screen bg-black font-sans antialiased",
             fontSans.variable
           )}
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <div className="relative flex min-h-screen flex-col">
-              <SiteHeader />
+              {/* <SiteHeader /> */}
               <div className="flex-1">{children}</div>
             </div>
             <TailwindIndicator />
