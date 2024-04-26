@@ -74,23 +74,22 @@ export default function IndexPage() {
 
 
     return (
-        <div className="relative bg-black overflow-hidden">
+        <div className="relative bg-blue-500 overflow-hidden" style={{ height: '100svh'}}>
             <div id="container" className="relative top-0 left-0 container grid items-center gap-0 h-screen z-20 overflow-y-scroll" style={{ scrollSnapType: 'y mandatory' }}>
-            {(URLs).map((url: any, i: any) => (
-                <div
-                    key={i}
-                    id={`scene${i}`}
-                    style={{ scrollSnapAlign: 'start' }}
-                    className="h-screen"
-                >
-                    <img
-                        alt=""
-                        src={i < 3 ? url : null}
-                        // className={`h-screen transition-opacity opacity-0 duration-1000 ${visibleScenes.has(i) ? ' opacity-100' : 'opacity-0'}`}
-                        className={`h-screen`}
-                    /> 
-                </div>
-            ))}
+                {(URLs).map((url: any, i: any) => (
+                    <div
+                        key={i}
+                        id={`scene${i}`}
+                        style={{ scrollSnapAlign: 'start' }}
+                        className="h-screen"
+                    >
+                        <img
+                            alt=""
+                            src={i < 3 ? url : null}
+                            className={`h-screen`}
+                        /> 
+                    </div>
+                ))}
             </div>
             <div id="ui" className={`absolute top-0 left-0 w-screen min-h-screen flex bg-opacity-0  z-50 pointer-events-none p-4 ${currentScene > 0 && currentScene < URLs.length - 2 ? "justify-end items-start" : "justify-center items-center"}`}>
                 <div className="flex flex-col gap-0 w-fit justify-center items-left bg-black bg-opacity-50 rounded-lg py-2 px-6 text-xl text-left ">

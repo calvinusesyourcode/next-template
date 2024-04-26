@@ -34,9 +34,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <>
       <html lang="en" suppressHydrationWarning className="bg-black">
         <head />
-        <body className={cn("min-h-screen bg-black font-sans antialiased", fontSans.variable)}>
-          <div className="relative flex min-h-screen flex-col">
-            <div className="flex-1">{children}</div>
+        <body className={cn("h-fit bg-black font-sans antialiased", fontSans.variable)}>
+          <div className="relative flex h-fit flex-col">
+            <div className="flex-1 h-fit">{children}</div>
           </div>
           <TailwindIndicator />
         </body>
