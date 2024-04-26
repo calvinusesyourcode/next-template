@@ -7,16 +7,16 @@ import { siteConfig } from "@/config/site"
 import { buttonVariants } from "@/components/ui/button"
 
 export default function IndexPage() {
-    const URLs = [
+    let URLs = [
         "a-matrix-of-code-cascading-in.png",
+        "a-mysterious-glow-surrounds-a-mushroom.png",
+        "a-person-looking-curiously-into-a.png",
         "a-determined-hacker-types-furiously-on.png",
         "a-digital-avatar-appears-looking-distressed.png",
         "a-dramatic-reunion-of-two-lovers.png",
         "a-mysterious-figure-appears-in-a.png",
         "a-mysterious-figure-illuminated-by-the.png",
         "a-mysterious-figure-whispers-into-the.png",
-        "a-mysterious-glow-surrounds-a-mushroom.png",
-        "a-person-looking-curiously-into-a.png",
         "a-single-leaf-falls-on-a.png",
         "a-transformative-energy-begins-to-surround.png",
         "close-up-of-intense-eyes-blinking-rapidly.png",
@@ -34,6 +34,7 @@ export default function IndexPage() {
 
     
     useEffect(() => {
+        URLs = URLs.slice(0,3).concat(URLs.slice(3).sort(() => Math.random() - 0.5))
         function update() {
             setLoadedScenes((loadedScenes: any) => {
                 const sceneNumber = loadedScenes || 3
