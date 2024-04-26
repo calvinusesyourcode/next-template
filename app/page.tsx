@@ -8,27 +8,26 @@ import { buttonVariants } from "@/components/ui/button"
 
 export default function IndexPage() {
     const [visibleScenes, setVisibleScenes] = useState(new Set())
-
-    const hoverdiv = document.createElement('div')
-    hoverdiv.className = "absolute top-0 left-0 w-screen min-h-screen flex justify-center items-center z-50 bg-opacity-0 pointer-events-none "
-  
-  useEffect(() => {
-    function adjustFrame() {
-      const scrollPosition = document.getElementById('container')!.scrollTop
-      const height = window.innerHeight
-      const sceneNumber = Math.floor(scrollPosition / height)
-      // const div = document.querySelector(`#scene[key="${sceneNumber}"]`)
-      const div: any = document.querySelector(`#scene${sceneNumber}`)
-      if (!div) return
-      setVisibleScenes(prev => new Set(prev.add(sceneNumber)))
-      document.getElementById('debug')!.innerText = sceneNumber.toString()
-      document.getElementById('debug2')!.innerText = scrollPosition.toString()
-    //   div!.innerText = `scrollPosition: ${scrollPosition}, height: ${height}`
-    }
-    adjustFrame()
-    document.getElementById('container')!.addEventListener('scroll', () => {
-      adjustFrame()
-    })
+    
+    useEffect(() => {
+        const hoverdiv = document.createElement('div')
+        hoverdiv.className = "absolute top-0 left-0 w-screen min-h-screen flex justify-center items-center z-50 bg-opacity-0 pointer-events-none "
+        function adjustFrame() {
+            const scrollPosition = document.getElementById('container')!.scrollTop
+            const height = window.innerHeight
+            const sceneNumber = Math.floor(scrollPosition / height)
+            // const div = document.querySelector(`#scene[key="${sceneNumber}"]`)
+            const div: any = document.querySelector(`#scene${sceneNumber}`)
+            if (!div) return
+            setVisibleScenes(prev => new Set(prev.add(sceneNumber)))
+            document.getElementById('debug')!.innerText = sceneNumber.toString()
+            document.getElementById('debug2')!.innerText = scrollPosition.toString()
+            //   div!.innerText = `scrollPosition: ${scrollPosition}, height: ${height}`
+        }
+        adjustFrame()
+        document.getElementById('container')!.addEventListener('scroll', () => {
+            adjustFrame()
+        })
   }, [])
 
 
