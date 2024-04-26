@@ -74,7 +74,7 @@ export default function IndexPage() {
 
 
     return (
-        <div className="relative bg-blue-500 overflow-hidden" style={{ height: '100svh'}}>
+        <div className="relative bg-black overflow-hidden" style={{ height: '100svh'}}>
             <div id="container" className="relative top-0 left-0 container grid items-center gap-0 h-screen z-20 overflow-y-scroll" style={{ scrollSnapType: 'y mandatory' }}>
                 {(URLs).map((url: any, i: any) => (
                     <div
