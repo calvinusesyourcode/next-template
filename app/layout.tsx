@@ -32,21 +32,13 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <>
-      <html lang="en" suppressHydrationWarning style={{ backgroundColor: 'black' }}>
+      <html lang="en" suppressHydrationWarning className="bg-black">
         <head />
-        <body
-          className={cn(
-            "min-h-screen bg-black font-sans antialiased",
-            fontSans.variable
-          )}
-        >
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <div className="relative flex min-h-screen flex-col">
-              {/* <SiteHeader /> */}
-              <div className="flex-1">{children}</div>
-            </div>
-            <TailwindIndicator />
-          </ThemeProvider>
+        <body className={cn("min-h-screen bg-black font-sans antialiased", fontSans.variable)}>
+          <div className="relative flex min-h-screen flex-col">
+            <div className="flex-1">{children}</div>
+          </div>
+          <TailwindIndicator />
         </body>
       </html>
     </>
