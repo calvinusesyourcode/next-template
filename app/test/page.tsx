@@ -17,16 +17,18 @@ export default function IndexPage() {
     const sliderRef = useRef(null)
     useEffect(() => {
         async function requestPermission() {
-            document.getElementById('debug-blue')!.innerText = "hello"
             if (typeof (DeviceMotionEvent as any).requestPermission === 'function') {
-                document.getElementById('debug-blue')!.innerText = "world"
                 const permission = await (DeviceMotionEvent as any).requestPermission();
-                if (permission === 'granted') addDeviceMotionListener();
+                if (permission === 'granted') {
+                    addDeviceMotionListener()
+                }
                 else console.error('Permission not granted for DeviceMotionEvent')
             } else addDeviceMotionListener()
             if (typeof (DeviceOrientationEvent as any).requestPermission === 'function') {
                 const permission = await (DeviceOrientationEvent as any).requestPermission();
-                if (permission === 'granted') addDeviceOrientationListener();
+                if (permission === 'granted') {
+                    addDeviceOrientationListener();
+                }
                 else console.error('Permission not granted for DeviceOrientationEvent');
             } else addDeviceOrientationListener()
         }
@@ -37,6 +39,7 @@ export default function IndexPage() {
                 y2.current = event?.acceleration?.y || 0
                 z2.current = event?.acceleration?.z || 0
             });
+            document.getElementById('permission-button')!.style.display = 'none'
         }
         function addDeviceOrientationListener() {
             window.addEventListener('deviceorientation', (event: DeviceOrientationEvent) => {
@@ -44,6 +47,7 @@ export default function IndexPage() {
                 y.current = event?.beta || 0
                 z.current = event?.gamma || 0
             });
+            document.getElementById('permission-button')!.style.display = 'none'
         }
 
         const btn = document.getElementById('permission-button')
@@ -73,12 +77,12 @@ export default function IndexPage() {
     return (
         <div className="relative bg-black overflow-hidden" style={{ height: '100svh' }}>
             <div className="absolute top-0 left-0 h-full w-full z-20 bg-blue-900">
-                <p id="debug-red" className="text-red-300">{x.current}</p>
-                <p id="debug-green" className="text-green-300">{y.current}</p>
-                <p id="debug-blue" className="text-blue-300">{z.current}</p>
-                <p id="debug-red-2" className="text-red-300">{x2.current}</p>
-                <p id="debug-green-2" className="text-green-300">{y2.current}</p>
-                <p id="debug-blue-2" className="text-blue-300">{z2.current}</p>
+                <p id="debug-red" className="text-red-300">{x.current.toString()}</p>
+                <p id="debug-green" className="text-green-300">{y.current.toString()}</p>
+                <p id="debug-blue" className="text-blue-300">{z.current.toString()}</p>
+                <p id="debug-red-2" className="text-red-300">{x2.current.toString()}</p>
+                <p id="debug-green-2" className="text-green-300">{y2.current.toString()}</p>
+                <p id="debug-blue-2" className="text-blue-300">{z2.current.toString()}</p>
                 <button id="permission-button" className="text-white p-4 outline-white outline-2">allow</button>
                 {/* <input
                     type="range"
