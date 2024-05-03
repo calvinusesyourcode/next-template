@@ -10,7 +10,6 @@ export default function IndexPage() {
     useEffect(() => {
         async function requestPermission() {
                 document.getElementById('debug-blue')!.innerText = "hello"
-                const permission = await DeviceMotionEvent.requestP
             if (typeof DeviceMotionEvent.requestPermission === 'function') {
                 document.getElementById('debug-blue')!.innerText = "world"
                 const permission = await DeviceMotionEvent.requestPermission();
