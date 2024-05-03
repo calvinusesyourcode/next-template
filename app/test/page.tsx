@@ -13,30 +13,18 @@ export default function IndexPage() {
     const [z, setZ] = useState(0)
     useEffect(() => {
         async function requestPermission() {
-                document.getElementById('debug-blue')!.innerText = "hello"
+            document.getElementById('debug-blue')!.innerText = "hello"
             if (typeof (DeviceMotionEvent as any).requestPermission === 'function') {
                 document.getElementById('debug-blue')!.innerText = "world"
                 const permission = await (DeviceMotionEvent as any).requestPermission();
-                if (permission === 'granted') {
-                    addDeviceMotionListener();
-                } else {
-                    console.error('Permission not granted for DeviceMotionEvent');
-                }
-            } else {
-                // Handle regular non-iOS 13+ devices.
-                addDeviceMotionListener();
-            }
+                if (permission === 'granted') addDeviceMotionListener();
+                else console.error('Permission not granted for DeviceMotionEvent')
+            } else addDeviceMotionListener()
             if (typeof (DeviceOrientationEvent as any).requestPermission === 'function') {
                 const permission = await (DeviceOrientationEvent as any).requestPermission();
-                if (permission === 'granted') {
-                    addDeviceOrientationListener();
-                } else {
-                    console.error('Permission not granted for DeviceOrientationEvent');
-                }
-            } else {
-                // Handle regular non-iOS 13+ devices.
-                addDeviceOrientationListener();
-            }
+                if (permission === 'granted') addDeviceOrientationListener();
+                else console.error('Permission not granted for DeviceOrientationEvent');
+            } else addDeviceOrientationListener()
         }
 
         function addDeviceMotionListener() {
@@ -60,9 +48,8 @@ export default function IndexPage() {
             });
         }
 
-        // Call this function on a user interaction
-        const btn = document.getElementById('permission-button');
-        btn?.addEventListener('click', requestPermission);
+        const btn = document.getElementById('permission-button')
+        btn?.addEventListener('click', requestPermission)
 
         const canvas = document.getElementById('canvas') as HTMLCanvasElement
         const ctx = canvas.getContext('2d') as CanvasRenderingContext2D
@@ -72,15 +59,12 @@ export default function IndexPage() {
         const centerY = height / 2
 
         function draw() {
-            ctx.clearRect(0, 0, width, height); // Clear the canvas
-
-            // Draw a circle that moves based on device orientation
-            ctx.beginPath();
-            ctx.arc(centerX + (x * 20), centerY + (y * 20), 30, 0, 2 * Math.PI);
-            ctx.fillStyle = 'rgba(255, 165, 0, 0.5)'; // Orange color with transparency
-            ctx.fill();
-
-            requestAnimationFrame(draw);
+            ctx.clearRect(0, 0, width, height)
+            ctx.beginPath()
+            ctx.arc(centerX + (x), centerY + (y), 30, 0, 2 * Math.PI)
+            ctx.fillStyle = 'rgba(255, 165, 0, 0.5)'
+            ctx.fill()
+            requestAnimationFrame(draw)
         }
 
         draw()
