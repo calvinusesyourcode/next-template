@@ -6,13 +6,14 @@ import { useEffect, useState } from "react"
 import { siteConfig } from "@/config/site"
 import { buttonVariants } from "@/components/ui/button"
 
+
 export default function IndexPage() {
     useEffect(() => {
         async function requestPermission() {
                 document.getElementById('debug-blue')!.innerText = "hello"
-            if (typeof DeviceMotionEvent.requestPermission === 'function') {
+            if (typeof (DeviceMotionEvent as any).requestPermission === 'function') {
                 document.getElementById('debug-blue')!.innerText = "world"
-                const permission = await DeviceMotionEvent.requestPermission();
+                const permission = await (DeviceMotionEvent as any).requestPermission();
                 if (permission === 'granted') {
                     addDeviceMotionListener();
                 } else {
@@ -26,13 +27,13 @@ export default function IndexPage() {
 
         function addDeviceMotionListener() {
             window.addEventListener('devicemotion', (event: DeviceMotionEvent) => {
-                const red = document.getElementById('debug-red');
-                const green = document.getElementById('debug-green');
-                const blue = document.getElementById('debug-blue');
+                const red: any = document.getElementById('debug-red');
+                const green: any = document.getElementById('debug-green');
+                const blue: any = document.getElementById('debug-blue');
                 if (!red || !green || !blue) return;
-                red.innerText = event.accelerationIncludingGravity?.x.toString();
-                green.innerText = event.accelerationIncludingGravity?.y.toString();
-                blue.innerText = event.accelerationIncludingGravity?.z.toString();
+                red.innerText = event?.accelerationIncludingGravity?.x?.toString();
+                green.innerText = event?.accelerationIncludingGravity?.y?.toString();
+                blue.innerText = event?.accelerationIncludingGravity?.z?.toString();
             });
         }
 
