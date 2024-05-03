@@ -8,6 +8,9 @@ import { buttonVariants } from "@/components/ui/button"
 
 
 export default function IndexPage() {
+    const [x, setX] = useState(0)
+    const [y, setY] = useState(0)
+    const [z, setZ] = useState(0)
     useEffect(() => {
         async function requestPermission() {
                 document.getElementById('debug-blue')!.innerText = "hello"
@@ -42,9 +45,9 @@ export default function IndexPage() {
                 const green: any = document.getElementById('debug-green');
                 const blue: any = document.getElementById('debug-blue');
                 if (!red || !green || !blue) return;
-                red.innerText = event?.acceleration?.x?.toString();
-                green.innerText = event?.acceleration?.y?.toString();
-                blue.innerText = event?.acceleration?.z?.toString();
+                setX(event?.acceleration?.x || 0)
+                setY(event?.acceleration?.y || 0)
+                setZ(event?.acceleration?.z || 0)
             });
         }
         function addDeviceOrientationListener() {
@@ -60,20 +63,44 @@ export default function IndexPage() {
         }
 
         // Call this function on a user interaction
-        const btn = document.createElement('button');
-        btn.innerText = 'Enable Device Motion';
-        btn.onclick = requestPermission;
-        document.body.appendChild(btn);
+        const btn = document.getElementById('permission-button');
+        btn?.addEventListener('click', requestPermission);
+
+        const canvas = document.getElementById('canvas') as HTMLCanvasElement
+        const ctx = canvas.getContext('2d') as CanvasRenderingContext2D
+        const width = canvas.width
+        const height = canvas.height
+        const centerX = width / 2
+        const centerY = height / 2
+
+        function draw() {
+            ctx.clearRect(0, 0, width, height); // Clear the canvas
+
+            // Draw a circle that moves based on device orientation
+            ctx.beginPath();
+            ctx.arc(centerX + (x * 20), centerY + (y * 20), 30, 0, 2 * Math.PI);
+            ctx.fillStyle = 'rgba(255, 165, 0, 0.5)'; // Orange color with transparency
+            ctx.fill();
+
+            requestAnimationFrame(draw);
+        }
+
+        draw()
+
     }, []);
 
     return (
-        <div className="relative bg-black overflow-hidden">
-            <p id="debug-red" className="text-red-300">-</p>
-            <p id="debug-green" className="text-green-300">-</p>
-            <p id="debug-blue" className="text-blue-300">-</p>
-            <p id="debug-red-2" className="text-red-300">-</p>
-            <p id="debug-green-2" className="text-green-300">-</p>
-            <p id="debug-blue-2" className="text-blue-300">-</p>
+        <div className="relative bg-black overflow-hidden" style={{ height: '100svh' }}>
+            <div className="absolute top-0 left-0 h-full w-full z-20 bg-blue-900">
+                <p id="debug-red" className="text-red-300">-</p>
+                <p id="debug-green" className="text-green-300">-</p>
+                <p id="debug-blue" className="text-blue-300">-</p>
+                <p id="debug-red-2" className="text-red-300">-</p>
+                <p id="debug-green-2" className="text-green-300">-</p>
+                <p id="debug-blue-2" className="text-blue-300">-</p>
+                <button id="permission-button" className="text-white">allow</button>
+            </div>
+            <canvas id="canvas" className="absolute top-0 left-0 z-30 h-full w-full"></canvas>
         </div>
     )
 }

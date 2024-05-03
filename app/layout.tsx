@@ -33,7 +33,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <>
       <html lang="en" suppressHydrationWarning className="bg-black">
         <head />
-        <body className={cn("h-fit bg-black font-sans antialiased", fontSans.variable)}>
+        <body className={cn("h-fit bg-black font-sans antialiased overflow-clip", fontSans.variable)}>
           <div className="relative flex h-fit flex-col">
             <div className="flex-1 h-fit">{children}</div>
           </div>
