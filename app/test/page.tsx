@@ -62,8 +62,18 @@ export default function IndexPage() {
 
         function draw() {
             ctx.clearRect(0, 0, width, height)
+            ctx.font = '16px Arial';
+            ctx.fillStyle = 'red';
+            ctx.fillText(`X1: ${x.current.toFixed(2)}`, 10, 20);
+            ctx.fillText(`X2: ${x2.current.toFixed(2)}`, 10, 80);
+            ctx.fillStyle = 'green';
+            ctx.fillText(`Y1: ${y.current.toFixed(2)}`, 10, 40);
+            ctx.fillText(`Y2: ${y2.current.toFixed(2)}`, 10, 100);
+            ctx.fillStyle = 'blue';
+            ctx.fillText(`Z1: ${z.current.toFixed(2)}`, 10, 60);
+            ctx.fillText(`Z2: ${z2.current.toFixed(2)}`, 10, 120);
             ctx.beginPath()
-            ctx.arc(centerX + (x.current), centerY + (y.current), 30, 0, 2 * Math.PI)
+            ctx.arc(centerX + (x.current || 0), centerY + (y.current || 0), 30, 0, 2 * Math.PI)
             ctx.fillStyle = 'rgba(255, 165, 0, 0.5)'
             ctx.fill()
             console.log("g")
@@ -77,12 +87,6 @@ export default function IndexPage() {
     return (
         <div className="relative bg-black overflow-hidden" style={{ height: '100svh' }}>
             <div className="absolute top-0 left-0 h-full w-full z-20 bg-blue-900">
-                <p id="debug-red" className="text-red-300">{x.current.toString()}</p>
-                <p id="debug-green" className="text-green-300">{y.current.toString()}</p>
-                <p id="debug-blue" className="text-blue-300">{z.current.toString()}</p>
-                <p id="debug-red-2" className="text-red-300">{x2.current.toString()}</p>
-                <p id="debug-green-2" className="text-green-300">{y2.current.toString()}</p>
-                <p id="debug-blue-2" className="text-blue-300">{z2.current.toString()}</p>
                 <button id="permission-button" className="text-white p-4 outline-white outline-2">allow</button>
                 {/* <input
                     type="range"
