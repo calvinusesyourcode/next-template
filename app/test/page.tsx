@@ -100,7 +100,7 @@ export default function IndexPage() {
                 <p id="debug-blue-2" className="text-blue-300">-</p>
                 <button id="permission-button" className="text-white">allow</button>
             </div>
-            <canvas id="canvas" className="absolute top-0 left-0 z-30 h-full w-full"></canvas>
+            <canvas id="canvas" style={{ pointerEvents: 'none' }} className="absolute top-0 left-0 z-30 h-full w-full"></canvas>
         </div>
     )
 }
