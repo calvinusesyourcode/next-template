@@ -79,8 +79,8 @@ export default function IndexPage() {
                 <p id="debug-red-2" className="text-red-300">{x2.current}</p>
                 <p id="debug-green-2" className="text-green-300">{y2.current}</p>
                 <p id="debug-blue-2" className="text-blue-300">{z2.current}</p>
-                <button id="permission-button" className="text-white">allow</button>
-                <input
+                <button id="permission-button" className="text-white p-4 outline-white outline-2">allow</button>
+                {/* <input
                     type="range"
                     min="-100"
                     max="100"
@@ -88,7 +88,7 @@ export default function IndexPage() {
                     ref={sliderRef}
                     onChange={(e) => x.current = parseInt(e.target.value)}
                     className="slider"
-                />
+                /> */}
             </div>
             <canvas id="canvas" style={{ pointerEvents: 'none' }} className="absolute top-0 left-0 z-30 h-full w-full"></canvas>
         </div>
