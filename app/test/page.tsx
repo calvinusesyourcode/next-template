@@ -45,7 +45,7 @@ export default function IndexPage() {
                 const green: any = document.getElementById('debug-green');
                 const blue: any = document.getElementById('debug-blue');
                 if (!red || !green || !blue) return;
-                
+
             });
         }
         function addDeviceOrientationListener() {
@@ -54,9 +54,9 @@ export default function IndexPage() {
                 const green: any = document.getElementById('debug-green-2');
                 const blue: any = document.getElementById('debug-blue-2');
                 if (!red || !green || !blue) return;
-                setX(event?.alpha || 0)
-                setY(event?.beta || 0)
-                setZ(event?.gamma || 0)
+                setX(event?.alpha || 0); red.innerText = event?.alpha?.toString();
+                setY(event?.beta || 0); green.innerText = event?.beta?.toString();
+                setZ(event?.gamma || 0); blue.innerText = event?.gamma?.toString();
             });
         }
 
